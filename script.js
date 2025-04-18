@@ -1,50 +1,48 @@
-const chatBox = document.getElementById('chatBox');
-const input = document.getElementById('userInput');
-const playBtn = document.getElementById('playBtn');
-const themeSong = document.getElementById('themeSong');
+const themeSong = document.getElementById("themeSong");
+document.getElementById("playButton").addEventListener("click", () => {
+  themeSong.play();
+});
 
-let firstMessage = true;
+const chatBox = document.getElementById("chat-box");
+const userInput = document.getElementById("user-input");
+
+let greeted = false;
 
 function sendMessage() {
-  const userMessage = input.value.trim();
+  const userMessage = userInput.value.trim();
   if (!userMessage) return;
 
-  appendMessage(userMessage, 'user');
-  input.value = '';
+  displayMessage(userMessage, 'user');
 
   setTimeout(() => {
-    if (firstMessage) {
-      appendMessage("I am John Wick, Max’s assistant.", 'bot');
-      firstMessage = false;
+    let botResponse;
+    if (!greeted) {
+      botResponse = "I am John Wick, Max’s assistant.";
+      greeted = true;
     } else {
-      const reply = generateBotReply(userMessage);
-      appendMessage(reply, 'bot');
+      botResponse = generateAIResponse(userMessage);
     }
+    displayMessage(botResponse, 'bot');
   }, 500);
+
+  userInput.value = "";
 }
 
-function appendMessage(message, sender) {
-  const msgDiv = document.createElement('div');
+function displayMessage(message, sender) {
+  const msgDiv = document.createElement("div");
   msgDiv.textContent = message;
-  msgDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+  msgDiv.className = sender;
   chatBox.appendChild(msgDiv);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function generateBotReply(input) {
-  const replies = [
-    "Talk to the man.",
-    "Do you really want to mess with me?",
-    "I don’t think that’s a wise question.",
-    "He’s busy. I’ll give you his private number: +19898841911.",
-    "I have access to internet, I never get boring.",
-    "You better be serious, I’m not a joke."
+function generateAIResponse(message) {
+  const responses = [
+    "You’ll have to talk to the man.",
+    "Let me get back to you on that.",
+    "This requires some special attention.",
+    "Consider it done.",
+    "That's something only Max can answer."
   ];
-
-  return replies[Math.floor(Math.random() * replies.length)];
+  return responses[Math.floor(Math.random() * responses.length)];
 }
-
-// Play theme on button click
-playBtn.addEventListener('click', () => {
-  themeSong.play();
-});
