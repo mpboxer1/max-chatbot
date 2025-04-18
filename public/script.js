@@ -1,42 +1,37 @@
-const responses = {
-  "hello": "Hello! How can I assist you today?",
-  "how are you": "I'm just a chatbot, but I'm doing great! How about you?",
-  "who are you": "I'm John Wick, the assistant of Max. Ask me anything!",
-  "favorite food": "Max loves pasta. That's his favorite food!",
-  "schedule": "Max wakes up at 4 AM and sleeps at 10 PM. He’s available for private meetings.",
-  "hobbies": "Max enjoys talking, playing soccer, and boxing.",
-  "age": "Max is 24 years old.",
-  "home": "Max's home is in India.",
-  "social": "If you want to talk to Max, send him a message on Instagram DM!"
-};
-
-let userInput = document.getElementById("user-input");
-let messagesContainer = document.getElementById("messages");
+let messages = document.getElementById('messages');
 
 function sendMessage() {
-  let userMessage = userInput.value.trim().toLowerCase();
+    let userInput = document.getElementById('user-input').value;
 
-  if (userMessage) {
-      // Display user message
-      messagesContainer.innerHTML += `<div class="user-message">You: ${userMessage}</div>`;
+    // Show the user message
+    let userMessage = document.createElement('div');
+    userMessage.className = 'user-message';
+    userMessage.innerHTML = `<strong>You:</strong> ${userInput}`;
+    messages.appendChild(userMessage);
 
-      // Get response from chatbot
-      let botResponse = responses[userMessage] || "Sorry, I don't understand that. Try asking something else.";
+    // Send the message to Max (simulate Max response)
+    let botMessage = document.createElement('div');
+    botMessage.className = 'bot-message';
+    botMessage.innerHTML = `<strong>Max (Robot):</strong> ${getMaxResponse(userInput)}`;
+    messages.appendChild(botMessage);
 
-      // Display chatbot response
-      setTimeout(() => {
-          messagesContainer.innerHTML += `<div class="bot-message">John Wick: ${botResponse}</div>`;
-          messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
-      }, 500);
+    // Scroll the chat to the bottom
+    messages.scrollTop = messages.scrollHeight;
 
-      // Clear input field
-      userInput.value = "";
-  }
+    // Clear the input field
+    document.getElementById('user-input').value = '';
 }
 
-// Listen for Enter key press
-userInput.addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-      sendMessage();
-  }
-});
+function getMaxResponse(input) {
+    // Max's responses and John Wick's assistant comments
+    const responses = {
+        "hello": "Hey there! John Wick is ready to assist me. How can we help you today?",
+        "how are you": "I'm doing great, thanks for asking! John Wick and I are here to assist.",
+        "favorite food": "My favorite food is pasta! What's yours?",
+        "timetable": "I wake up at 4 AM and sleep at 10 PM. Only available for private meetings!",
+        "soccer": "I love soccer! Do you play?"
+    };
+
+    // Default response if no match is found
+    return responses[input.toLowerCase()] || "Sorry, I didn't understand that. Ask John Wick for help!";
+}
