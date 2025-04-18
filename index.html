@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Wick Chatbot</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Max Chatbot</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <audio id="themeSong" autoplay loop>
-        <source src="theme-song.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
+  <!-- Background Image (Full Screen) -->
+  <div id="background-container">
+    <img src="johnwick-background.jpg" id="background-image" alt="John Wick">
 
-    <div id="chatbox">
-        <div id="chat-area">
-            <!-- Chat messages will be dynamically added here -->
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
+      <div id="chatbox">
+        <div id="chat-content">
+          <!-- Chat messages will go here -->
         </div>
-        <input id="user-input" type="text" placeholder="Type your message..." />
-        <button id="send-btn">Send</button>
+        <textarea id="user-input" placeholder="Type your message..."></textarea>
+        <button id="send-button">Send</button>
+      </div>
+
+      <!-- Play Theme Song Button -->
+      <button id="play-button" onclick="playThemeSong()">Play Song</button>
     </div>
+  </div>
 
-    <div id="background"></div>
+  <audio id="themeSong" autoplay loop>
+    <source src="theme-song.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
