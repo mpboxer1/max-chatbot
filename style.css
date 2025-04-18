@@ -1,82 +1,96 @@
-/* Background images for John Wick, Pitbull, and Chat background */
+/* Body and background styling */
 body {
-    background-image: url('assets/chat-background.jpg'), url('assets/johnwick-image.jpg'), url('assets/pitbull-image.jpg');
-    background-position: center, center left, center right;
-    background-size: cover, contain, contain;
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-attachment: fixed;
-    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    background-image: url('johnwick-image.jpg'); /* John Wick image as background */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(70%);
+    font-family: Arial, sans-serif;
 }
 
+/* Chat container styling */
 .chat-container {
-    position: relative;
-    width: 400px;
-    height: 600px;
-    background-color: rgba(0, 0, 0, 0.6); /* Darken the background behind chat */
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for chatbot */
+    border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 350px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
-.chat-box {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-#messages {
-    overflow-y: auto;
-    flex-grow: 1;
+/* Chat header styling */
+.chat-header h1 {
+    color: white;
+    text-align: center;
+    font-size: 24px;
     margin-bottom: 10px;
-    padding-right: 10px;
+}
+
+.chat-header p {
+    color: #ccc;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Chatbox input and button styling */
+.chat-box {
+    margin-top: 20px;
 }
 
 input {
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-    border: none;
     width: 100%;
-    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
 button {
-    padding: 10px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
     width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #45a049;
 }
 
-.user-message, .bot-message {
-    margin: 10px 0;
+/* Styling for messages */
+.messages {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
     padding: 10px;
+    background-color: #333;
     border-radius: 5px;
-    max-width: 80%;
 }
 
-.user-message {
-    background-color: #d3f8e2;
-    align-self: flex-end;
+.messages p {
+    margin: 0;
+    color: white;
+    font-size: 14px;
 }
 
-.bot-message {
-    background-color: #f0f0f0;
-    align-self: flex-start;
+/* 3D effect on button */
+button {
+    perspective: 1000px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+button:active {
+    transform: rotateX(20deg);
 }
