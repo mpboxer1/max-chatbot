@@ -1,0 +1,38 @@
+body {
+  background: #0f0f0f;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+.chatbox {
+  width: 360px;
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #333;
+}
+#messages {
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  border: 1px solid #333;
+  padding: 10px;
+  background: #000;
+}
+input {
+  width: 72%;
+  padding: 10px;
+  border: none;
+  background: #222;
+  color: #fff;
+}
+button {
+  width: 25%;
+  padding: 10px;
+  background: #00bcd4;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
