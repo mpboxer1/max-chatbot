@@ -11,7 +11,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
-// Response Database (updated messages only)
+// ▼▼▼ ADDED THIS ROUTE ▼▼▼ (fixes "Cannot GET /" error)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+// ▲▲▲ ONLY ADDITION ▲▲▲
+
+// Response Database (unchanged)
 const RESPONSES = {
   greetings: [
     "I'm John Wick, Max's personal assistant. He's currently in training. How can I help?",
