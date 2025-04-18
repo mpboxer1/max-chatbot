@@ -26,14 +26,20 @@ function sendMessage() {
 // Function to get bot response based on user input
 function getBotResponse(input) {
     input = input.toLowerCase();
-    if (input.includes("hello") || input.includes("hi")) {
+    
+    // Custom responses based on the input
+    if (input.includes("hello") || input.includes("hi") || input.includes("hey")) {
         return "Hello! I am always busy, but I can give you my boss's number: +19898841911. Please leave a message!";
+    } else if (input.includes("where is your boss") || input.includes("boss") || input.includes("who is your boss")) {
+        return "My boss is Max, he is currently unavailable but you can contact him at +19898841911.";
     } else if (input.includes("soccer")) {
         return "Max loves soccer! Always ready to talk about it.";
     } else if (input.includes("pasta")) {
         return "Max’s favorite food is pasta! Yummy!";
     } else if (input.includes("busy")) {
         return "Max is always busy with private meetings. You can message him on Instagram!";
+    } else if (input.includes("help") || input.includes("support")) {
+        return "How can I assist you? You can also contact Max directly at +19898841911.";
     } else {
         return "Sorry, I didn't quite catch that. Please ask something else!";
     }
