@@ -23,6 +23,13 @@ document.getElementById('send-btn').addEventListener('click', function() {
   }
 });
 
+// Play the theme song when button is clicked
+document.getElementById('play-theme').addEventListener('click', function() {
+  let audio = document.getElementById('themeSong');
+  audio.play();
+  this.style.display = 'none'; // Hide the button after playing
+});
+
 // Simple bot response logic
 function getBotResponse(userInput) {
   let response = "Sorry, I didn't quite catch that. Please ask something else!";
