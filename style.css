@@ -1,61 +1,56 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Make the background cover the entire screen */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('johnwick-image.jpg') no-repeat center center/cover;
+    z-index: -1;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-}
-
-.background {
-    background-image: url('johnwick-image.jpg'); /* Full screen John Wick background */
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.chatbox {
-    width: 80%;
-    max-width: 500px;
-    height: 600px;
-    background: url('chat-background.jpg'); /* Fitted chat background */
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px;
-    padding: 20px;
-    position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.chat-content {
-    overflow-y: auto;
-    height: calc(100% - 60px);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 10px;
-    color: white;
-}
-
-.play-button {
+/* Style the chatbox */
+#chatbox {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #0a74da;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.play-button:hover {
-    background-color: #0056b3;
+/* Chat area where messages appear */
+#chat-area {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: url('chat-background.jpg') no-repeat center center/cover;
+}
+
+/* Style the input box */
+#user-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* Style the send button */
+#send-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #1c1c1c;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#send-btn:hover {
+    background-color: #333;
 }

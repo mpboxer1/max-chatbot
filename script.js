@@ -1,40 +1,45 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const chatContent = document.getElementById("chat-content");
-    const playButton = document.getElementById("playButton");
-    const themeSong = document.getElementById("themeSong");
+// Play the theme song when the page is loaded
+document.getElementById('themeSong').play();
 
-    // Add first message from the bot when page loads
-    chatContent.innerHTML = "<p><strong>John Wick</strong>: I am John Wick, Max's assistant. How can I help you today?</p>";
+// Store references to the input, chat area, and send button
+const userInput = document.getElementById('user-input');
+const chatArea = document.getElementById('chat-area');
+const sendBtn = document.getElementById('send-btn');
 
-    // Add event listener to the play button
-    playButton.addEventListener("click", function () {
-        themeSong.play();
-        playButton.disabled = true;
-        playButton.textContent = "Song Playing";
-    });
+// Send initial message when the page is loaded
+window.onload = () => {
+    addChatMessage("I am John Wick, Max's assistant.");
+};
 
-    // Simulate Chatbot replies after user types something
-    function chatbotReply(userMessage) {
-        let botReply = "";
-
-        if (userMessage.includes("boss")) {
-            botReply = "Sorry, I'm always busy. But here's my boss's number: +19898841911";
-        } else {
-            botReply = "Sorry, I didn't quite catch that. Please ask something else!";
-        }
-
-        chatContent.innerHTML += `<p><strong>John Wick</strong>: ${botReply}</p>`;
-        chatContent.scrollTop = chatContent.scrollHeight; // Auto-scroll to latest message
+// Function to add a chat message
+function addChatMessage(message, isUser = false) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('chat-message');
+    if (isUser) {
+        messageElement.classList.add('user-message');
     }
+    messageElement.textContent = message;
+    chatArea.appendChild(messageElement);
+    chatArea.scrollTop = chatArea.scrollHeight; // Scroll to the bottom
+}
 
-    // Simple user input listener
-    window.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            const userMessage = prompt("Type your message:");
-            if (userMessage) {
-                chatContent.innerHTML += `<p><strong>You</strong>: ${userMessage}</p>`;
-                chatbotReply(userMessage);
-            }
-        }
-    });
+// Handle the sending of the message
+sendBtn.addEventListener('click', () => {
+    if (userInput.value.trim()) {
+        const userMessage = userInput.value.trim();
+        addChatMessage(userMessage, true);
+        userInput.value = '';
+
+        // Simulate a reply (you can add your custom AI logic here)
+        setTimeout(() => {
+            addChatMessage("I am processing your request... Please wait.", false);
+        }, 1000);
+    }
+});
+
+// Handle Enter key to send message
+userInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && userInput.value.trim()) {
+        sendBtn.click();
+    }
 });
