@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Max Chatbot</title>
@@ -16,6 +17,94 @@
       <div id="chatbox">
         <div id="chat-content">
           <!-- Chat messages will go here -->
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A John Wick-themed chatbot application">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>John Wick Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        #chatbox {
+            width: 90%;
+            max-width: 400px;
+            background: #282828;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        #chat-area {
+            height: 300px;
+            overflow-y: auto;
+            background: #1f1f1f;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+        }
+
+        #user-input {
+            width: calc(100% - 60px);
+            padding: 10px;
+            margin-right: 5px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background: #333;
+            color: white;
+        }
+
+        #send-btn {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+        }
+
+        #send-btn:hover {
+            background-color: #555;
+        }
+
+        #play-btn {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+        }
+
+        #play-btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatbox">
+        <button id="play-btn">Play Theme Song</button>
+        <audio id="themeSong" loop>
+            <source src="theme-song.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <div id="chat-area">
+            <!-- Chat messages will be dynamically added here -->
+>>>>>>> b55e79bf2996fa4edd60e9e66f75d2763ffba1ec
         </div>
         <textarea id="user-input" placeholder="Type your message..."></textarea>
         <button id="send-button">Send</button>
@@ -26,11 +115,28 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <audio id="themeSong" autoplay loop>
     <source src="theme-song.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
 
   <script src="script.js"></script>
+=======
+    <script>
+        const playBtn = document.getElementById('play-btn');
+        const themeSong = document.getElementById('themeSong');
+
+        playBtn.addEventListener('click', () => {
+            if (themeSong.paused) {
+                themeSong.play();
+                playBtn.textContent = 'Pause Theme Song';
+            } else {
+                themeSong.pause();
+                playBtn.textContent = 'Play Theme Song';
+            }
+        });
+    </script>
+>>>>>>> b55e79bf2996fa4edd60e9e66f75d2763ffba1ec
 </body>
 </html>
