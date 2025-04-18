@@ -1,14 +1,23 @@
 {
+<<<<<<< HEAD
   "name": "max-chatbot",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+=======
+  "name": "my-chatbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> ce20026 (Initial commit - Max's Chatbot with John Wick)
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+<<<<<<< HEAD
   "dependencies": {
     "body-parser": "^2.2.0",
     "express": "^5.1.0"
@@ -22,4 +31,13 @@
   },
   "homepage": "https://github.com/mpboxer1/max-chatbot#readme",
   "description": ""
+=======
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "openai": "^4.95.0"
+  }
+>>>>>>> ce20026 (Initial commit - Max's Chatbot with John Wick)
 }
