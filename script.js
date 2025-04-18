@@ -1,50 +1,53 @@
-// Function to send message and handle responses
+// Initialize the messages array
+let messages = [
+    { role: 'bot', content: 'Hello! I am John Wick, Max’s assistant. How can I help you today?' },
+];
+
+// Function to send a message from the user
 function sendMessage() {
-  var userInput = document.getElementById('user-input').value;
-  if (userInput.trim() === "") return; // Prevent sending empty messages
+    const userInput = document.getElementById("user-input").value;
+    if (!userInput.trim()) return;
 
-  // Add user's message to the chat
-  var messageContainer = document.getElementById('messages');
-  var userMessageDiv = document.createElement('div');
-  userMessageDiv.classList.add('user-message');
-  userMessageDiv.innerText = userInput;
-  messageContainer.appendChild(userMessageDiv);
+    // Display user message
+    messages.push({ role: 'user', content: userInput });
+    displayMessages();
 
-  // Clear the input field
-  document.getElementById('user-input').value = "";
+    // Clear input field
+    document.getElementById("user-input").value = "";
 
-  // Generate bot's response based on user input
-  var botResponse = getBotResponse(userInput);
-
-  // Add bot's response to the chat
-  var botMessageDiv = document.createElement('div');
-  botMessageDiv.classList.add('bot-message');
-  botMessageDiv.innerText = botResponse;
-  messageContainer.appendChild(botMessageDiv);
-
-  // Scroll to the bottom of the chat
-  messageContainer.scrollTop = messageContainer.scrollHeight;
+    // Simulate a response from John Wick (bot)
+    setTimeout(() => {
+        const botResponse = getBotResponse(userInput);
+        messages.push({ role: 'bot', content: botResponse });
+        displayMessages();
+    }, 1000); // Wait for 1 second before the bot responds
 }
 
-// Function to generate responses
-function getBotResponse(userInput) {
-  userInput = userInput.toLowerCase().trim();
+// Function to get bot response based on user input
+function getBotResponse(input) {
+    input = input.toLowerCase();
+    if (input.includes("hello") || input.includes("hi")) {
+        return "Hello! I am always busy, but I can give you my boss's number: +19898841911. Please leave a message!";
+    } else if (input.includes("soccer")) {
+        return "Max loves soccer! Always ready to talk about it.";
+    } else if (input.includes("pasta")) {
+        return "Max’s favorite food is pasta! Yummy!";
+    } else if (input.includes("busy")) {
+        return "Max is always busy with private meetings. You can message him on Instagram!";
+    } else {
+        return "Sorry, I didn't quite catch that. Please ask something else!";
+    }
+}
 
-  if (userInput.includes("hello") || userInput.includes("hi")) {
-      return "Hello! How can I assist you today?";
-  } else if (userInput.includes("how are you")) {
-      return "I'm doing great, thank you for asking!";
-  } else if (userInput.includes("what's your name")) {
-      return "I'm John Wick, Max's assistant. How can I help you?";
-  } else if (userInput.includes("where is max")) || userInput.includes("talk to max")) {
-      return "Max is currently busy with private meetings. If you wish to contact him, you can reach out at +19898841911.";
-  } else if (userInput.includes("soccer")) {
-      return "Max loves playing soccer. He's very passionate about it!";
-  } else if (userInput.includes("boxing")) {
-      return "Max is also a skilled boxer!";
-  } else if (userInput.includes("private number")) {
-      return "I'm afraid Max is always busy. However, you can reach him at his private number: +19898841911.";
-  } else {
-      return "I'm sorry, I couldn't understand that. Could you please rephrase?";
-  }
+// Function to display messages in the chat box
+function displayMessages() {
+    const messagesContainer = document.getElementById("messages");
+    messagesContainer.innerHTML = ""; // Clear current messages
+    messages.forEach(message => {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add(message.role === 'user' ? 'user-message' : 'bot-message');
+        messageDiv.textContent = message.content;
+        messagesContainer.appendChild(messageDiv);
+    });
+    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
 }
