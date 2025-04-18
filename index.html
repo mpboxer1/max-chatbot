@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Max Chatbot</title>
-  <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max's Chatbot</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Background -->
-  <div class="background"></div>
-
-  <!-- Theme Song Button -->
-  <button id="playButton">Play Theme</button>
-  <audio id="themeSong">
-    <source src="theme-song.mp3" type="audio/mp3" />
-    Your browser does not support the audio element.
-  </audio>
-
-  <!-- Chatbot Container -->
-  <div class="chatbot-container">
-    <!-- Chat Image Inside Bot -->
-    <img src="chat-background.jpg" alt="Chat Image" class="chat-image" />
-    
-    <div id="chatbox">
-      <div id="messages"></div>
-      <input type="text" id="userInput" placeholder="Type your message..."/>
+    <!-- Full desktop background image -->
+    <div class="background">
+        <!-- Chatbox with chat background image inside -->
+        <div class="chatbox">
+            <div id="chat-content" class="chat-content">
+                <!-- Chatbot will start here -->
+            </div>
+            <button id="playButton" class="play-button">Play Song</button>
+        </div>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <!-- Audio for the theme song -->
+    <audio id="themeSong" autoplay loop>
+        <source src="theme-song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
 </body>
 </html>

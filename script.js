@@ -1,52 +1,40 @@
-const userInput = document.getElementById("userInput");
-const messages = document.getElementById("messages");
-const playButton = document.getElementById("playButton");
-const themeSong = document.getElementById("themeSong");
+document.addEventListener("DOMContentLoaded", function () {
+    const chatContent = document.getElementById("chat-content");
+    const playButton = document.getElementById("playButton");
+    const themeSong = document.getElementById("themeSong");
 
-let isFirstMessage = true;
+    // Add first message from the bot when page loads
+    chatContent.innerHTML = "<p><strong>John Wick</strong>: I am John Wick, Max's assistant. How can I help you today?</p>";
 
-// Play song on click
-playButton.addEventListener("click", () => {
-  themeSong.play();
-  playButton.style.display = "none";
-});
+    // Add event listener to the play button
+    playButton.addEventListener("click", function () {
+        themeSong.play();
+        playButton.disabled = true;
+        playButton.textContent = "Song Playing";
+    });
 
-// Send message on Enter
-userInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    const input = userInput.value.trim();
-    if (input) {
-      addMessage("You", input);
-      generateBotReply(input);
-      userInput.value = "";
+    // Simulate Chatbot replies after user types something
+    function chatbotReply(userMessage) {
+        let botReply = "";
+
+        if (userMessage.includes("boss")) {
+            botReply = "Sorry, I'm always busy. But here's my boss's number: +19898841911";
+        } else {
+            botReply = "Sorry, I didn't quite catch that. Please ask something else!";
+        }
+
+        chatContent.innerHTML += `<p><strong>John Wick</strong>: ${botReply}</p>`;
+        chatContent.scrollTop = chatContent.scrollHeight; // Auto-scroll to latest message
     }
-  }
+
+    // Simple user input listener
+    window.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            const userMessage = prompt("Type your message:");
+            if (userMessage) {
+                chatContent.innerHTML += `<p><strong>You</strong>: ${userMessage}</p>`;
+                chatbotReply(userMessage);
+            }
+        }
+    });
 });
-
-function addMessage(sender, text) {
-  const message = document.createElement("div");
-  message.innerHTML = `<strong>${sender}:</strong> ${text}`;
-  messages.appendChild(message);
-  messages.scrollTop = messages.scrollHeight;
-}
-
-function generateBotReply(userText) {
-  if (isFirstMessage) {
-    addMessage("John Wick", "I am John Wick, Max’s assistant.");
-    isFirstMessage = false;
-  } else {
-    const response = generateAIResponse(userText);
-    addMessage("John Wick", response);
-  }
-}
-
-function generateAIResponse(input) {
-  // Very basic mock logic
-  if (input.toLowerCase().includes("who are you")) {
-    return "I am the Baba Yaga.";
-  } else if (input.toLowerCase().includes("help")) {
-    return "Tell me what you need. I don’t hesitate.";
-  } else {
-    return "Talk to the man... I am listening.";
-  }
-}
