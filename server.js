@@ -5,41 +5,67 @@ const cors = require('cors');
 const helmet = require('helmet');
 const app = express();
 
-// Middleware
+// Middleware (unchanged)
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
-// Max's information
-const MAX = {
-  name: "Max",
-  phone: "+19898841911",
-  instagram: process.env.MAX_INSTAGRAM || "max_private",
-  status: "currently unavailable",
-  profession: "professional boxer"
+// Response Database (updated messages only)
+const RESPONSES = {
+  greetings: [
+    "I'm John Wick, Max's personal assistant. He's currently in training. How can I help?",
+    "John Wick speaking. Max is unavailable right now. What do you need?",
+    "Max's assistant here. He's busy with boxing prep. State your business."
+  ],
+  contact: [
+    "Max accepts contacts only through:\n📞 +19898841911 (urgent calls)\n📸 @max_private (DMs)",
+    "Direct access to Max:\n• Phone: +19898841911\n• Instagram: @max_private\nNo third-party contacts.",
+    "For Max's eyes only:\nCall: +19898841911\nDM: @max_private\nExpect delayed responses."
+  ],
+  profession: [
+    "Max is a pro boxer training 6 days/week. No interviews without appointment.",
+    "Professional boxing is Max's focus. Contact for sponsorship: +19898841911",
+    "Max's fight schedule is confidential. Media inquiries to @max_private"
+  ],
+  soccer: [
+    "Max plays competitive soccer Tues/Thurs. No spectator requests.",
+    "Soccer is Max's cross-training. Not accepting team offers currently.",
+    "Football inquiries: Contact @max_private with 'SOCCER' in subject."
+  ],
+  personal: [
+    "Max is 25, from India, USA-based. No personal questions answered.",
+    "Personal info restricted. Professional inquiries only.",
+    "Max's private life is private. Contact for business: +19898841911"
+  ],
+  default: [
+    "Message logged. Max responds to:\n📞 +19898841911 (calls)\n📸 @max_private (verified DMs)",
+    "Noted. Use official channels:\nPhone: +19898841911\nIG: @max_private",
+    "This channel is for screening. Contact directly for responses."
+  ]
 };
 
-// Enhanced Response System
 app.post('/chat', (req, res) => {
-  const message = req.body.message.toLowerCase().trim();
+  const msg = req.body.message.toLowerCase();
   let response;
 
-  // Greetings
-  if (/^(hi|hello|hey)/i.test(message)) {
-    response = `I'm John Wick, ${MAX.name}'s assistant. ${MAX.name} is ${MAX.status}. How can I help you?`;
+  if (/hi|hello|hey|greetings/i.test(msg)) {
+    response = RESPONSES.greetings[Math.floor(Math.random() * RESPONSES.greetings.length)];
   }
-  // Contact Requests
-  else if (/(contact|reach|talk|call|number|whatsapp|phone|dm|direct message|instagram)/i.test(message)) {
-    response = `${MAX.name} prefers direct contact:\n\n📞 ${MAX.phone}\n📸 @${MAX.instagram}`;
+  else if (/contact|talk|reach|number|call|dm|whatsapp|instagram/i.test(msg)) {
+    response = RESPONSES.contact[Math.floor(Math.random() * RESPONSES.contact.length)];
   }
-  // About Max
-  else if (/(who is max|about max|your boss)/i.test(message)) {
-    response = `${MAX.name} is a ${MAX.profession} and my employer. I handle his communications.`;
+  else if (/box|fight|profession|career|match/i.test(msg)) {
+    response = RESPONSES.profession[Math.floor(Math.random() * RESPONSES.profession.length)];
   }
-  // Default Professional Response
+  else if (/soccer|football|play|game|team/i.test(msg)) {
+    response = RESPONSES.soccer[Math.floor(Math.random() * RESPONSES.soccer.length)];
+  }
+  else if (/age|old|single|where|from|live|hometown/i.test(msg)) {
+    response = RESPONSES.personal[Math.floor(Math.random() * RESPONSES.personal.length)];
+  }
   else {
-    response = `${MAX.name} will be notified. For urgent matters:\n\n📞 ${MAX.phone}\n📸 @${MAX.instagram}`;
+    response = RESPONSES.default[Math.floor(Math.random() * RESPONSES.default.length)];
   }
 
   res.json({ 
