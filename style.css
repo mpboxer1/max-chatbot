@@ -1,96 +1,64 @@
-/* Body and background styling */
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('johnwick-image.jpg'); /* John Wick image as background */
-    background-size: cover;
-    background-position: center;
-    filter: brightness(70%);
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('johnwick-image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Chat container styling */
-.chat-container {
-    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for chatbot */
-    border-radius: 15px;
-    padding: 20px;
-    width: 350px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 1;
+.chat-wrapper {
+  background-color: rgba(0, 0, 0, 0.75);
+  border: 2px solid #444;
+  border-radius: 20px;
+  padding: 20px;
+  width: 400px;
+  max-height: 600px;
+  overflow: hidden;
+  box-shadow: 0 0 20px #00f2ff;
+  backdrop-filter: blur(10px);
 }
 
-/* Chat header styling */
-.chat-header h1 {
-    color: white;
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 10px;
+.chat-bubble-container h2 {
+  text-align: center;
+  color: #00f2ff;
+  margin-bottom: 10px;
 }
 
-.chat-header p {
-    color: #ccc;
-    text-align: center;
-    font-size: 14px;
+.chat-area {
+  height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #111;
+  margin-bottom: 10px;
 }
 
-/* Chatbox input and button styling */
-.chat-box {
-    margin-top: 20px;
+.input-area {
+  display: flex;
+  gap: 10px;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    font-size: 14px;
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-/* Styling for messages */
-.messages {
-    max-height: 300px;
-    overflow-y: auto;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #333;
-    border-radius: 5px;
-}
-
-.messages p {
-    margin: 0;
-    color: white;
-    font-size: 14px;
-}
-
-/* 3D effect on button */
-button {
-    perspective: 1000px;
-    position: relative;
-    transform-style: preserve-3d;
-}
-
-button:active {
-    transform: rotateX(20deg);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #00f2ff;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
 }

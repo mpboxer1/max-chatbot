@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Max Chatbot - John Wick Assistant</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Max's Chatbot - John Wick Assistant</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="chat-container">
-        <!-- Chat Header with John Wick Image -->
-        <div class="chat-header">
-            <h1>💬 Chat with John Wick</h1>
-            <p>Assistant to Max. Leave a DM on Instagram to talk privately.</p>
-        </div>
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="johnwick-theme.mp3" type="audio/mpeg" />
+  </audio>
 
-        <!-- Chatbox -->
-        <div class="chat-box">
-            <div class="messages" id="messages"></div>
-            <input type="text" id="user-input" placeholder="Type a message...">
-            <button onclick="sendMessage()">Send</button>
-        </div>
+  <!-- Chatbot UI -->
+  <div class="chat-wrapper">
+    <div class="chat-bubble-container">
+      <h2>💬 Chat with John Wick</h2>
+      <div id="messages" class="chat-area"></div>
+      <div class="input-area">
+        <input type="text" id="user-input" placeholder="Say something..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
