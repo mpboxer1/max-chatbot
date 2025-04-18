@@ -5,17 +5,22 @@ const cors = require('cors');
 const helmet = require('helmet');
 const app = express();
 
-// Middleware (unchanged)
+// Middleware
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
 
-// ▼▼▼ ADDED THIS ROUTE ▼▼▼ (fixes "Cannot GET /" error)
+// Serve static files from root directory
+app.use(express.static(__dirname));
+
+// Route to serve index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'), {
+    headers: {
+      'Content-Type': 'text/html'
+    }
+  });
 });
-// ▲▲▲ ONLY ADDITION ▲▲▲
 
 // Response Database (unchanged)
 const RESPONSES = {
@@ -82,5 +87,5 @@ app.post('/chat', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`John Wick Assistant active on port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
