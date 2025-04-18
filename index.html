@@ -3,53 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A John Wick-themed chatbot application">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>John Wick Chatbot</title>
+  <title>John Wick - Max's Assistant</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Full Desktop Background Image -->
   <div id="background-container">
-    <img src="johnwick-background.jpg" id="background-image" alt="John Wick">
+    <img src="johnwick-background.jpg" id="background-image" alt="John Wick Background">
   </div>
-  
-  <!-- Chatbot Container -->
+
   <div id="chatbot-container">
     <div id="chatbox">
-      <!-- Play Theme Song Button -->
-      <button id="play-btn">Play Theme Song</button>
-      <audio id="themeSong" loop>
-        <source src="theme-song.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-      </audio>
-  
-      <!-- Chatbox Area -->
-      <div id="chat-area">
-        <!-- Chat messages will be dynamically added here -->
-      </div>
-
-      <!-- User Input Area -->
+      <div id="chat-area"></div>
       <textarea id="user-input" placeholder="Type your message..."></textarea>
       <button id="send-button">Send</button>
     </div>
   </div>
 
-  <script>
-    const playBtn = document.getElementById('play-btn');
-    const themeSong = document.getElementById('themeSong');
-  
-    playBtn.addEventListener('click', () => {
-      if (themeSong.paused) {
-        themeSong.play();
-        playBtn.textContent = 'Pause Theme Song';
-      } else {
-        themeSong.pause();
-        playBtn.textContent = 'Play Theme Song';
-      }
-    });
-  </script>
-  
+  <button id="music-control">Play Theme Song</button>
+  <audio id="theme-song" loop>
+    <source src="theme-song.mp3" type="audio/mpeg">
+  </audio>
+
   <script src="script.js"></script>
 </body>
 </html>
