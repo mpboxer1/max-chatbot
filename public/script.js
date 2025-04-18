@@ -1,37 +1,38 @@
-let messages = document.getElementById('messages');
+// script.js
 
 function sendMessage() {
-    let userInput = document.getElementById('user-input').value;
-
-    // Show the user message
-    let userMessage = document.createElement('div');
-    userMessage.className = 'user-message';
-    userMessage.innerHTML = `<strong>You:</strong> ${userInput}`;
-    messages.appendChild(userMessage);
-
-    // Send the message to Max (simulate Max response)
-    let botMessage = document.createElement('div');
-    botMessage.className = 'bot-message';
-    botMessage.innerHTML = `<strong>Max (Robot):</strong> ${getMaxResponse(userInput)}`;
-    messages.appendChild(botMessage);
-
-    // Scroll the chat to the bottom
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+    if (message === "") return;
+  
+    appendMessage("You", message);
+    input.value = "";
+  
+    setTimeout(() => {
+      appendMessage("John Wick", getResponse(message));
+    }, 600);
+  }
+  
+  function appendMessage(sender, text) {
+    const messages = document.getElementById("messages");
+    const messageDiv = document.createElement("div");
+    messageDiv.innerHTML = `<strong style="color:#00ffff">${sender}:</strong> <span style="color:#eee">${text}</span>`;
+    messageDiv.style.marginBottom = "12px";
+    messages.appendChild(messageDiv);
     messages.scrollTop = messages.scrollHeight;
-
-    // Clear the input field
-    document.getElementById('user-input').value = '';
-}
-
-function getMaxResponse(input) {
-    // Max's responses and John Wick's assistant comments
-    const responses = {
-        "hello": "Hey there! John Wick is ready to assist me. How can we help you today?",
-        "how are you": "I'm doing great, thanks for asking! John Wick and I are here to assist.",
-        "favorite food": "My favorite food is pasta! What's yours?",
-        "timetable": "I wake up at 4 AM and sleep at 10 PM. Only available for private meetings!",
-        "soccer": "I love soccer! Do you play?"
-    };
-
-    // Default response if no match is found
-    return responses[input.toLowerCase()] || "Sorry, I didn't understand that. Ask John Wick for help!";
-}
+  }
+  
+  function getResponse(msg) {
+    msg = msg.toLowerCase();
+    if (msg.includes("hello") || msg.includes("hi")) {
+      return "Hello. John Wick here, Max's assistant. How can I help?";
+    }
+    if (msg.includes("max")) {
+      return "Max is a 24-year-old boxer from India. He loves pasta, plays soccer, and wakes up at 4 AM.";
+    }
+    if (msg.includes("meeting")) {
+      return "Max is available for private meetings only. Please DM him on Instagram.";
+    }
+    return "I'm John Wick. Let me know how I can assist on Max's behalf.";
+  }
+  
